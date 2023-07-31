@@ -183,13 +183,9 @@ class LoginScreen extends StatelessWidget {
                                     fontSize: 15,
                                     fontWeight: FontWeight.bold),
                               ),
-
-
                             ),
-
                           ],
                         ),
-
                       ],
                     ),
                   ],
