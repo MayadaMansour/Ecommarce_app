@@ -8,7 +8,7 @@ class CachHelper {
   static Future<void> init() async {
     sharedPreferences = await SharedPreferences.getInstance();
   }
-
+// save data
   static Future<bool> saveData(
       {required String key, required dynamic value}) async {
     if (value is int) {

@@ -1,0 +1,16 @@
+import 'package:flutter/material.dart';
+
+class FavoriteScreen extends StatelessWidget{
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: const Text(
+        "Favorite",
+        style: TextStyle(color: Colors.blue),
+      ),
+    );
+  }
+
+}

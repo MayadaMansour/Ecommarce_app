@@ -1,27 +1,34 @@
-
-
 import 'package:ecommarce_app/constans.dart';
 import 'package:ecommarce_app/data/remote/dio_helper.dart';
 import 'package:ecommarce_app/models/login_model.dart';
+import 'package:ecommarce_app/view/modules/categories/categories_screen.dart';
+import 'package:ecommarce_app/view/modules/favorite/favorite_screen.dart';
+import 'package:ecommarce_app/view/modules/products/products_screen.dart';
+import 'package:ecommarce_app/view/modules/seetings/settings_screen.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 part 'main_state.dart';
 
 class MainCubit extends Cubit<MainState> {
   MainCubit() : super(MainInitial());
 
   static MainCubit get(context) => BlocProvider.of(context);
- /* HomeData? homeModel;
+
+  /* HomeData? homeModel;
   CategorisModel? categorisModel; */
   Map<int, bool> favorites = {};
   int index = 0;
- /* late ChangeFavoritesModel changeFavoritesModel;
-  GetFavorites? getFavorites;
+
+  /* late ChangeFavoritesModel changeFavoritesModel;
+  GetFavorites? getFavorites; */
+  
   List<Widget> screens = [
-    const Products(),
-    const Category(),
-    const Favorite(),
-    const Setting(),
-  ]; */
+    ProductScreen(),
+    CategoryScreen(),
+    FavoriteScreen(),
+    SettingScreen(),
+  ];
 
   void changeIcon(val) {
     index = val;
@@ -34,10 +41,10 @@ class MainCubit extends Cubit<MainState> {
       url: "home",
       token: token,
     ).then((value) {
-     // homeModel = HomeData.fromjson(value.data);
+      // homeModel = HomeData.fromjson(value.data);
       // print(homeModel!.data!.products[0].image);
       // print(homeModel!.status);
-     /* for (var e in homeModel!.data!.products) {
+      /* for (var e in homeModel!.data!.products) {
         favorites.addAll({e.id!: e.inFavorites!});
       } */
 
@@ -70,9 +77,9 @@ class MainCubit extends Cubit<MainState> {
     DioHelper.postData(
             url: "favorites", data: {"product_id": productId}, token: token)
         .then((value) {
-     // changeFavoritesModel = ChangeFavoritesModel.fromjson(value.data);
+      // changeFavoritesModel = ChangeFavoritesModel.fromjson(value.data);
       // print(value.data);
-    /*  if (changeFavoritesModel.status == false) {
+      /*  if (changeFavoritesModel.status == false) {
         favorites[productId] = !favorites[productId]!;
       } else {
         getFavoritesData();
@@ -95,6 +102,7 @@ class MainCubit extends Cubit<MainState> {
   }
 
   ShopLoginModel? userdata;
+
   void getUserdata() {
     DioHelper.getData(url: "profile", token: token).then((value) {
       userdata = ShopLoginModel.fromjson(value.data);

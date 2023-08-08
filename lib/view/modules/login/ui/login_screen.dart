@@ -1,6 +1,7 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:ecommarce_app/constans.dart';
 import 'package:ecommarce_app/data/local/cache_helper.dart';
+import 'package:ecommarce_app/view/modules/home/ui/home_screen.dart';
 import 'package:ecommarce_app/view/modules/login/cubit/cubit_login.dart';
 import 'package:ecommarce_app/view/modules/login/cubit/states.dart';
 import 'package:ecommarce_app/view/modules/register/register_screen.dart';
@@ -13,6 +14,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class LoginScreen extends StatelessWidget {
+
   LoginScreen({super.key});
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -29,10 +31,10 @@ class LoginScreen extends StatelessWidget {
                   key: "saveToken", value: state.loginModel.data!.token)
                   .then((value) {
                 token = state.loginModel.data!.token;
-                /* Navigator.pushAndRemoveUntil(
+                 Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(builder: (context) => const HomeScreen()),
-                    (route) => false); */
+                    (route) => false);
               });
             } else {
               coustomToast(

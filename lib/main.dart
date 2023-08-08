@@ -16,9 +16,8 @@ Future<void> main() async {
   dynamic onBoarding = CachHelper.getData(key: "onBoarding");
   token = CachHelper.getData(key: "saveToken");
 
-// ignore: unnecessary_null_comparison
+
   if (onBoarding != null) {
-// ignore: unnecessary_null_comparison
     if (token != null) {
       widget = const HomeScreen();
     } else {
@@ -30,7 +29,7 @@ Future<void> main() async {
   runApp(ShopApp(startWidget: widget));
 }
 
-// ignore: must_be_immutable
+
 class ShopApp extends StatelessWidget {
   ShopApp({super.key, this.startWidget});
   Widget? startWidget;

@@ -1,4 +1,5 @@
 import 'package:ecommarce_app/view/modules/home/cubit/main_cubit.dart';
+import 'package:ecommarce_app/view/modules/search/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,17 +18,18 @@ class HomeScreen extends StatelessWidget {
             actions: [
               IconButton(
                   onPressed: () {
-                  /*  Navigator.push(
+                    Navigator.push(
                         context,
                         MaterialPageRoute(
-                         // builder: (context) => const Search(),
-                        ));*/
+                          builder: (context) =>  SearchScreen(),
+                        ));
                   },
                   icon: const Icon(
                     Icons.search_outlined,
                     color: Colors.blue,
                   ))
             ],
+
             title: const Text(
               "Shopping",
               style: TextStyle(color: Colors.blue),
@@ -35,6 +37,7 @@ class HomeScreen extends StatelessWidget {
             backgroundColor: Colors.transparent,
             elevation: 0,
           ),
+
           bottomNavigationBar: BottomNavigationBar(
               onTap: (value) {
                 cubit.changeIcon(value);
@@ -48,22 +51,24 @@ class HomeScreen extends StatelessWidget {
                 BottomNavigationBarItem(
                   icon: Icon(Icons.home_outlined,),
                   label: "Home",
-
                 ),
+
                 BottomNavigationBarItem(
                   icon: Icon(Icons.apps_outlined,),
                   label: "Category",
                 ),
+
                 BottomNavigationBarItem(
                   icon: Icon(Icons.favorite_outline,),
                   label: "Favorite",
                 ),
+
                 BottomNavigationBarItem(
                   icon: Icon(Icons.settings,),
                   label: "Setting",
                 ),
               ]),
-         // body: cubit.screens[cubit.index],
+          body: cubit.screens[cubit.index],
         );
       },
     );
