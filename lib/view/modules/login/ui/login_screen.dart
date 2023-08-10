@@ -1,7 +1,7 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:ecommarce_app/constans.dart';
 import 'package:ecommarce_app/data/local/cache_helper.dart';
-import 'package:ecommarce_app/view/modules/home/ui/home_screen.dart';
+import 'package:ecommarce_app/view/modules/home/home_screen.dart';
 import 'package:ecommarce_app/view/modules/login/cubit/cubit_login.dart';
 import 'package:ecommarce_app/view/modules/login/cubit/states.dart';
 import 'package:ecommarce_app/view/modules/register/register_screen.dart';
@@ -33,7 +33,7 @@ class LoginScreen extends StatelessWidget {
                 token = state.loginModel.data!.token;
                  Navigator.pushAndRemoveUntil(
                     context,
-                    MaterialPageRoute(builder: (context) => const HomeScreen()),
+                    MaterialPageRoute(builder: (context) =>  HomeScreen()),
                     (route) => false);
               });
             } else {

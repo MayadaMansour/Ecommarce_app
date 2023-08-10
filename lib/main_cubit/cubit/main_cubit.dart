@@ -1,5 +1,7 @@
 import 'package:ecommarce_app/constans.dart';
 import 'package:ecommarce_app/data/remote/dio_helper.dart';
+import 'package:ecommarce_app/data/remote/end_point.dart';
+import 'package:ecommarce_app/models/home_model.dart';
 import 'package:ecommarce_app/models/login_model.dart';
 import 'package:ecommarce_app/view/modules/categories/categories_screen.dart';
 import 'package:ecommarce_app/view/modules/favorite/favorite_screen.dart';
@@ -15,8 +17,8 @@ class MainCubit extends Cubit<MainState> {
 
   static MainCubit get(context) => BlocProvider.of(context);
 
-  /* HomeData? homeModel;
-  CategorisModel? categorisModel; */
+  HomeModel? homeModel;
+ // CategorisModel? categorisModel;
   Map<int, bool> favorites = {};
   int index = 0;
 
@@ -38,20 +40,19 @@ class MainCubit extends Cubit<MainState> {
   void getHomeData() {
     emit(LoadingHomeData());
     DioHelper.getData(
-      url: "home",
+      url:HOME,
       token: token,
     ).then((value) {
-      // homeModel = HomeData.fromjson(value.data);
-      // print(homeModel!.data!.products[0].image);
-      // print(homeModel!.status);
+       homeModel = HomeModel.fromjson(value.data);
+       print(homeModel!.data!.products[0].image);
+       print(homeModel!.status);
       /* for (var e in homeModel!.data!.products) {
         favorites.addAll({e.id!: e.inFavorites!});
       } */
-
       // print(favorites.toString());
       emit(SuccessHomeData());
     }).catchError((error) {
-      // print(error.toString());
+      print(error.toString());
       emit(ErrorHomeData());
     });
   }

@@ -1,12 +1,13 @@
 
 import 'package:ecommarce_app/data/local/cache_helper.dart';
-import 'package:ecommarce_app/view/modules/home/ui/home_screen.dart';
+import 'package:ecommarce_app/main_cubit/cubit/main_cubit.dart';
+import 'package:ecommarce_app/view/modules/home/home_screen.dart';
 import 'package:ecommarce_app/view/modules/login/ui/login_screen.dart';
 import 'package:ecommarce_app/view/modules/onboard/onboard_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'constans.dart';
-import 'view/modules/home/cubit/main_cubit.dart';
+
 
 
 Future<void> main() async {
@@ -19,7 +20,7 @@ Future<void> main() async {
 
   if (onBoarding != null) {
     if (token != null) {
-      widget = const HomeScreen();
+      widget =  HomeScreen();
     } else {
       widget = LoginScreen();
     }

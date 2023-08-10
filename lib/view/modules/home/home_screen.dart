@@ -1,11 +1,12 @@
-import 'package:ecommarce_app/view/modules/home/cubit/main_cubit.dart';
+
+import 'package:ecommarce_app/main_cubit/cubit/main_cubit.dart';
 import 'package:ecommarce_app/view/modules/search/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,7 @@ class HomeScreen extends StatelessWidget {
 
             title: const Text(
               "Shopping",
-              style: TextStyle(color: Colors.blue),
+              style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold,fontSize: 22),
             ),
             backgroundColor: Colors.transparent,
             elevation: 0,
@@ -43,6 +44,7 @@ class HomeScreen extends StatelessWidget {
                 cubit.changeIcon(value);
               },
               currentIndex: cubit.index,
+
               selectedItemColor: Colors.blue,
               unselectedItemColor: Colors.grey,
               backgroundColor: Colors.white,
