@@ -1,6 +1,7 @@
 import 'package:ecommarce_app/constans.dart';
 import 'package:ecommarce_app/data/remote/dio_helper.dart';
 import 'package:ecommarce_app/data/remote/end_point.dart';
+import 'package:ecommarce_app/models/categories_model.dart';
 import 'package:ecommarce_app/models/home_model.dart';
 import 'package:ecommarce_app/models/login_model.dart';
 import 'package:ecommarce_app/view/modules/categories/categories_screen.dart';
@@ -18,7 +19,7 @@ class MainCubit extends Cubit<MainState> {
   static MainCubit get(context) => BlocProvider.of(context);
 
   HomeModel? homeModel;
- // CategorisModel? categorisModel;
+  CategoriesModel? categorisModel;
   Map<int, bool> favorites = {};
   int index = 0;
 
@@ -59,15 +60,15 @@ class MainCubit extends Cubit<MainState> {
 
   void getCategorisData() {
     DioHelper.getData(
-      url: "categories",
+      url: GET_CATEGORIES,
       token: token,
     ).then((value) {
-      //categorisModel = CategorisModel.fromjson(value.data);
-      // print(categorisModel!.status);
-      // print(categorisModel!.data!.dataModel[0].name);
+      categorisModel = CategoriesModel.fromjson(value.data);
+      print(categorisModel!.status);
+      //print(categorisModel!.data!.dataModel[0].name);
       emit(SuccessCategoresData());
     }).catchError((error) {
-      // print(error.toString());
+       print(error.toString());
       emit(ErrorCategoreseData());
     });
   }

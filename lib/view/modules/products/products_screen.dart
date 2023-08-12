@@ -1,5 +1,6 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:ecommarce_app/main_cubit/cubit/main_cubit.dart';
+import 'package:ecommarce_app/models/categories_model.dart';
 import 'package:ecommarce_app/models/home_model.dart';
 import 'package:ecommarce_app/widgets/styles/colors.dart';
 import 'package:flutter/material.dart';
@@ -13,9 +14,9 @@ class ProductScreen extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         return ConditionalBuilder(
-            condition: MainCubit.get(context).homeModel != null,
+            condition: MainCubit.get(context).homeModel != null && MainCubit.get(context).categorisModel != null,
             builder: (context) =>
-                ProductsBuilder(MainCubit.get(context).homeModel!),
+                ProductsBuilder(MainCubit.get(context).homeModel!,MainCubit.get(context).categorisModel !,context),
             fallback: (context) => Center(
                   child: CircularProgressIndicator(),
                 ));
@@ -23,9 +24,10 @@ class ProductScreen extends StatelessWidget {
     );
   }
 
-  Widget ProductsBuilder(HomeModel model) => SingleChildScrollView(
+  Widget ProductsBuilder(HomeModel model,CategoriesModel categoriesModel ,context) => SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CarouselSlider(
               items: model.data!.banners
@@ -53,6 +55,38 @@ class ProductScreen extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "Categoris",
+                    style: TextStyle(color: defaultColor, fontSize: 26),
+                  ),
+                  SizedBox(
+                    height: 80,
+                    child: ListView.separated(
+                        physics: const BouncingScrollPhysics(),
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) =>
+                            categoryItem(categoriesModel.data!.data[index]),
+                        separatorBuilder: (context, index) => const SizedBox(width: 10),
+                        itemCount: categoriesModel.data!.data.length),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    "New Products",
+                    style: TextStyle(color: defaultColor, fontSize: 26),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
             Container(
               color: Colors.grey[300],
               child: GridView.count(
@@ -70,11 +104,13 @@ class ProductScreen extends StatelessWidget {
         ),
       );
 
+
   Widget gridProducts(ProductsModel model) => Container(
         color: Colors.white,
         child: Stack(children: [
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Stack(
+              alignment: AlignmentDirectional.bottomCenter,
               children: [
                 Image.network(
                   model.image!,
@@ -137,4 +173,27 @@ class ProductScreen extends StatelessWidget {
           ]),
         ]),
       );
+
+  Widget categoryItem(DataModel model )=> Stack(
+    alignment: AlignmentDirectional.bottomCenter,
+    children: [
+      Image.network(height: 100, width: 100, "${model.image}"),
+      Container(
+        height: 20,
+        width: 100,
+        decoration: BoxDecoration(color: Colors.black.withOpacity(0.7)),
+        child: Text(
+          "${model.name}",
+          textAlign: TextAlign.center,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: const TextStyle(
+            fontSize: 18,
+            color: Colors.white,
+          ),
+        ),
+      )
+    ],
+  );
+
 }
