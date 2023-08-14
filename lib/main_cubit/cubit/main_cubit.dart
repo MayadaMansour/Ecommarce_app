@@ -1,7 +1,9 @@
 import 'package:ecommarce_app/constans.dart';
 import 'package:ecommarce_app/data/remote/dio_helper.dart';
 import 'package:ecommarce_app/data/remote/end_point.dart';
+import 'package:ecommarce_app/models/add_favorite_model.dart';
 import 'package:ecommarce_app/models/categories_model.dart';
+import 'package:ecommarce_app/models/get_favorite_model.dart';
 import 'package:ecommarce_app/models/home_model.dart';
 import 'package:ecommarce_app/models/login_model.dart';
 import 'package:ecommarce_app/view/modules/categories/categories_screen.dart';
@@ -22,16 +24,16 @@ class MainCubit extends Cubit<MainState> {
   CategoriesModel? categorisModel;
   Map<int, bool> favorites = {};
   int index = 0;
-
-  /* late ChangeFavoritesModel changeFavoritesModel;
-  GetFavorites? getFavorites; */
-  
+  late ChangeFavoritesModel changeFavoritesModel;
+  GetFavorite? getFavorites;
+  ShopLoginModel? userdata;
   List<Widget> screens = [
     ProductScreen(),
     CategoryScreen(),
     FavoriteScreen(),
     SettingScreen(),
   ];
+
 
   void changeIcon(val) {
     index = val;
@@ -45,15 +47,11 @@ class MainCubit extends Cubit<MainState> {
       token: token,
     ).then((value) {
        homeModel = HomeModel.fromjson(value.data);
-       print(homeModel!.data!.products[0].image);
-       print(homeModel!.status);
-      /* for (var e in homeModel!.data!.products) {
+       for (var e in homeModel!.data!.products) {
         favorites.addAll({e.id!: e.inFavorites!});
-      } */
-      // print(favorites.toString());
+      }
       emit(SuccessHomeData());
     }).catchError((error) {
-      print(error.toString());
       emit(ErrorHomeData());
     });
   }
@@ -64,11 +62,8 @@ class MainCubit extends Cubit<MainState> {
       token: token,
     ).then((value) {
       categorisModel = CategoriesModel.fromjson(value.data);
-      print(categorisModel!.status);
-      //print(categorisModel!.data!.dataModel[0].name);
       emit(SuccessCategoresData());
     }).catchError((error) {
-       print(error.toString());
       emit(ErrorCategoreseData());
     });
   }
@@ -77,38 +72,39 @@ class MainCubit extends Cubit<MainState> {
     favorites[productId] = !favorites[productId]!;
     emit(SuccessFavorites());
     DioHelper.postData(
-            url: "favorites", data: {"product_id": productId}, token: token)
+            url: FAVORITES,
+        data: {"product_id": productId},
+        token: token)
         .then((value) {
-      // changeFavoritesModel = ChangeFavoritesModel.fromjson(value.data);
-      // print(value.data);
-      /*  if (changeFavoritesModel.status == false) {
+       changeFavoritesModel = ChangeFavoritesModel.fromjson(value.data);
+        if (changeFavoritesModel.status == false) {
         favorites[productId] = !favorites[productId]!;
-      } else {
+      }  else {
         getFavoritesData();
-      } */
-      //emit(SuccessFavoritesData(changeFavoritesModel));
+      }
+      emit(SuccessFavoritesData(changeFavoritesModel));
     }).catchError((error) {
+      favorites[productId] = !favorites[productId]!;
       emit(ErrorFavoritesData());
     });
   }
 
   void getFavoritesData() {
     emit(LoadingGetFavoritesData());
-    DioHelper.getData(url: "favorites", token: token).then((value) {
-      //getFavorites = GetFavorites.fromjson(value.data);
-      // print(value.data.toString());
+    DioHelper.getData(url: FAVORITES, token: token).then((value) {
+      getFavorites = GetFavorite.fromjson(value.data);
       emit(SuccessGetFavoritesData());
     }).catchError((error) {
       emit(ErrorGetFavoriteseData());
     });
   }
 
-  ShopLoginModel? userdata;
+
 
   void getUserdata() {
-    DioHelper.getData(url: "profile", token: token).then((value) {
+    DioHelper.getData(url: PROFILE, token: token).then((value) {
       userdata = ShopLoginModel.fromjson(value.data);
-      // print(value.data.toString());
+       print(value.data.toString());
       emit(SuccessGetUserData());
     }).catchError((error) {
       emit(ErrorGetUserData());

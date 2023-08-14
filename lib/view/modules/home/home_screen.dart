@@ -33,7 +33,7 @@ class HomeScreen extends StatelessWidget {
 
             title: const Text(
               "Shopping",
-              style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold,fontSize: 22),
+              style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold,fontSize: 25),
             ),
             backgroundColor: Colors.transparent,
             elevation: 0,
@@ -44,7 +44,6 @@ class HomeScreen extends StatelessWidget {
                 cubit.changeIcon(value);
               },
               currentIndex: cubit.index,
-
               selectedItemColor: Colors.blue,
               unselectedItemColor: Colors.grey,
               backgroundColor: Colors.white,

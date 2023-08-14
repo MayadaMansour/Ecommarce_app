@@ -4,7 +4,7 @@ class CategoriesModel{
 
   CategoriesModel.fromjson(Map<String,dynamic> json){
     status = json["status"];
-    data =CategoriesDataModel.fromJason(json["data"]);
+    data =CategoriesDataModel.fromJson(json["data"]);
   }
 
 }
@@ -13,7 +13,7 @@ class CategoriesDataModel{
   int? currentpage;
   late List<DataModel> data = [];
 
-  CategoriesDataModel.fromJason(Map<String,dynamic> json){
+  CategoriesDataModel.fromJson(Map<String,dynamic> json){
     currentpage = json["current_page"];
     for (var x in json["data"]) {
       data.add(DataModel.fromjson(x));

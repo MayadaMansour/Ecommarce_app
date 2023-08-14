@@ -15,13 +15,15 @@ class ErrorHomeData extends MainState {}
 class SuccessCategoresData extends MainState {}
 class ErrorCategoreseData extends MainState {}
 
-//Favorite_Data
+//Post_Favorite
 class SuccessFavoritesData extends MainState {
- // final ChangeFavoritesModel model;
- // SuccessFavoritesData(this.model);
+ final ChangeFavoritesModel model;
+  SuccessFavoritesData(this.model);
 }
 class SuccessFavorites extends MainState {}
 class ErrorFavoritesData extends MainState {}
+
+//Get_Favorite
 class SuccessGetFavoritesData extends MainState {}
 class ErrorGetFavoriteseData extends MainState {}
 class LoadingGetFavoritesData extends MainState {}
