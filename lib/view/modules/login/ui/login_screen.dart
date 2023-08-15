@@ -4,7 +4,7 @@ import 'package:ecommarce_app/data/local/cache_helper.dart';
 import 'package:ecommarce_app/view/modules/home/home_screen.dart';
 import 'package:ecommarce_app/view/modules/login/cubit/cubit_login.dart';
 import 'package:ecommarce_app/view/modules/login/cubit/states.dart';
-import 'package:ecommarce_app/view/modules/register/register_screen.dart';
+import 'package:ecommarce_app/view/modules/register/ui/register_screen.dart';
 import 'package:ecommarce_app/widgets/coustoms/coustom_bottom.dart';
 import 'package:ecommarce_app/widgets/coustoms/coustom_text_form.dart';
 import 'package:ecommarce_app/widgets/coustoms/coustom_toast.dart';
@@ -83,7 +83,7 @@ class LoginScreen extends StatelessWidget {
                                 )),
                           ),
                         ),
-                        const SizedBox(
+                         SizedBox(
                           height: 30,
                         ),
                         CoustomTextForm(
@@ -105,7 +105,7 @@ class LoginScreen extends StatelessWidget {
                             borderReduse: 10,
                             labelColor: Colors.grey,
                             userTextColor: Colors.blue),
-                        const SizedBox(
+                         SizedBox(
                           height: 20,
                         ),
                         CoustomTextForm(
@@ -136,7 +136,7 @@ class LoginScreen extends StatelessWidget {
                             borderReduse: 10,
                             labelColor: Colors.grey,
                             userTextColor: Colors.blue),
-                        const SizedBox(
+                         SizedBox(
                           height: 30,
                         ),
                         ConditionalBuilder(
@@ -157,7 +157,7 @@ class LoginScreen extends StatelessWidget {
                                 color: Colors.blue,
                               )),
                         ),
-                        const SizedBox(
+                         SizedBox(
                           height: 15,
                         ),
                         Row(

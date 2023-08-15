@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-// ignore: must_be_immutable
+
 class CoustomTextForm extends StatelessWidget {
+
   CoustomTextForm(
       {super.key,
       this.prefIcon,
@@ -38,7 +39,8 @@ class CoustomTextForm extends StatelessWidget {
   IconButton? suffixIcone;
   TextInputType text;
   String label;
-  @override
+
+
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
@@ -68,6 +70,7 @@ class CoustomTextForm extends StatelessWidget {
     );
   }
 }
+
 Widget defaultTextButton({
   required  Function function,
   required String text,
@@ -93,3 +96,5 @@ void navigateAndFinish(context, widget) => Navigator.pushAndRemoveUntil(
     ), (route) {
   return false;
 });
+
+

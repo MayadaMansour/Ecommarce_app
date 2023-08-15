@@ -26,7 +26,7 @@ class MainCubit extends Cubit<MainState> {
   int index = 0;
   late ChangeFavoritesModel changeFavoritesModel;
   GetFavorite? getFavorites;
-  ShopLoginModel? userdata;
+   late ShopLoginModel userdata;
   List<Widget> screens = [
     ProductScreen(),
     CategoryScreen(),
@@ -104,8 +104,7 @@ class MainCubit extends Cubit<MainState> {
   void getUserdata() {
     DioHelper.getData(url: PROFILE, token: token).then((value) {
       userdata = ShopLoginModel.fromjson(value.data);
-       print(value.data.toString());
-      emit(SuccessGetUserData());
+      emit(SuccessGetUserData(userdata));
     }).catchError((error) {
       emit(ErrorGetUserData());
     });
