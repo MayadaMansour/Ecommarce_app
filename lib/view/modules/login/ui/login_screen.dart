@@ -104,7 +104,7 @@ class LoginScreen extends StatelessWidget {
                             borderColor: Colors.blue,
                             borderReduse: 10,
                             labelColor: Colors.grey,
-                            userTextColor: Colors.blue),
+                            userTextColor: Colors.black),
                          SizedBox(
                           height: 20,
                         ),
@@ -135,7 +135,7 @@ class LoginScreen extends StatelessWidget {
                             borderColor: Colors.blue,
                             borderReduse: 10,
                             labelColor: Colors.grey,
-                            userTextColor: Colors.blue),
+                            userTextColor: Colors.black),
                          SizedBox(
                           height: 30,
                         ),

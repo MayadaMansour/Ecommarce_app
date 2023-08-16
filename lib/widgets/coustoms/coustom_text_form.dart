@@ -14,7 +14,7 @@ class CoustomTextForm extends StatelessWidget {
       this.controller,
       this.textStyle,
       this.suffixIconeColor,
-      required this.passwordText,
+     required this.passwordText,
       required this.label,
       required this.text,
       required this.museTextColor,
@@ -57,6 +57,7 @@ class CoustomTextForm extends StatelessWidget {
           prefixIconColor: prefIconColor,
           prefixIcon: Icon(prefIcon),
           labelText: label,
+          //obscureText: passwordText,
           labelStyle: TextStyle(color: labelColor),
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(borderReduse),
